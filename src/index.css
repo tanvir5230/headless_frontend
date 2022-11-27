@@ -12,7 +12,50 @@
 }
 .folder-container {
   height: 90vh;
+  border-top: 2px solid white;
+}
+.folder {
+  display: flex;
+  align-items: center;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 3px;
+  border-bottom: 3px;
+  border-color: rgb(146, 146, 146);
+  border-style: solid;
+  border-radius: 10px;
+  height: 50px;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  opacity: 0.8;
+  z-index: 100;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+.form {
+  padding: 10px;
+  width: 300px;
   border: 2px solid white;
+  border-radius: 10px;
+}
+.form > h4 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+.form > div {
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 .button {
   appearance: button;
@@ -51,4 +94,24 @@
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
     rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
+
+/* Style buttons */
+.button-icon {
+  appearance: button;
+  background-color: #4d4ae8;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid #4d4ae8;
+  border-radius: 1rem;
+  padding: 5px; /* Some padding */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.button-icon:hover {
+  background-color: RoyalBlue;
 }

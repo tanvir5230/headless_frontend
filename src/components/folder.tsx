@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { serverUrl } from "..";
 import { CreateForm } from "./createButton";
+import { DeleteButton } from "./deleteButton";
 import { FolderContainer } from "./FolderContainer";
 
 type FolderProps = {
@@ -11,26 +12,12 @@ type FolderProps = {
   id: string;
 };
 function Folder({ parentDir, type, folderName, id }: FolderProps) {
+  const [rotation, setRotation] = useState(0);
   const [renderContainer, setRenderContainer] = useState(false);
-  const [deleted, setDeleted] = useState(false);
-  const [showMsg, setShowMsg] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const handleExpand = () => {
     setRenderContainer(!renderContainer);
-  };
-  const handleDelete = (id: string) => {
-    axios.delete(`${serverUrl}/delete/${id}`).then((response) => {
-      if (response.data.status) {
-        setDeleted(true);
-        setShowMsg(true);
-      } else {
-        setDeleted(false);
-        setShowMsg(true);
-      }
-      setTimeout(() => {
-        setShowMsg(false);
-      }, 2000);
-    });
+    setRotation(rotation === 0 ? 90 : 0);
   };
   const handleCreate = (e: React.MouseEvent, boolVal: boolean) => {
     e.preventDefault();
@@ -38,17 +25,19 @@ function Folder({ parentDir, type, folderName, id }: FolderProps) {
   };
   return (
     <>
-      <div style={{ display: "flex", border: "1px solid red" }}>
-        <button className="button" onClick={handleExpand}>
-          {">"}
+      <div className="folder">
+        <button onClick={handleExpand} className="button-icon">
+          <img
+            src={require("../icons/triangle.png")}
+            alt=""
+            style={{ rotate: `${rotation}deg` }}
+          />
         </button>
         <p style={{ height: 44, padding: "13px 25px" }}> {folderName} </p>
-        <div style={{ marginLeft: "auto" }}>
-          {type !== "root" && (
-            <button className="button" onClick={() => handleDelete(id)}>
-              D
-            </button>
-          )}
+        <div
+          style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}
+        >
+          {type !== "root" && <DeleteButton id={id} name={folderName} />}
           <button
             className="button"
             style={{ marginLeft: 5 }}
@@ -57,25 +46,6 @@ function Folder({ parentDir, type, folderName, id }: FolderProps) {
             new +
           </button>
         </div>
-        {showMsg && (
-          <p
-            style={{
-              background: "black",
-              textAlign: "center",
-              color: "red",
-              fontSize: 30,
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              padding: "20 0",
-            }}
-          >
-            {deleted
-              ? "The folder was deleted."
-              : "The folder couldnot be deleted."}
-          </p>
-        )}
         {type === "root" && showForm && (
           <CreateForm cancel={handleCreate} parentDir="root" />
         )}

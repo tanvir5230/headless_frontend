@@ -22,22 +22,9 @@ const CreateForm = (props: { cancel: Function; parentDir: string }) => {
       });
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "black",
-        position: "fixed",
-        zIndex: 100,
-        left: "0",
-        top: "0",
-        bottom: "0",
-        right: 0,
-      }}
-    >
-      <form style={{ width: 300, height: 300 }}>
+    <div className="form-container">
+      <form className="form">
+        <h4>Add a folder to the "{props.parentDir}" directory:</h4>
         <input
           style={{ width: "100%", height: 40, padding: 5, borderRadius: 10 }}
           type="text"
@@ -47,7 +34,7 @@ const CreateForm = (props: { cancel: Function; parentDir: string }) => {
           onChange={(e) => setInputFolderName(e.target.value)}
           required
         />
-        <div style={{ paddingTop: 10 }}>
+        <div>
           <button className="button" onClick={(e) => props.cancel(e, false)}>
             Cancel
           </button>

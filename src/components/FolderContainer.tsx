@@ -18,8 +18,10 @@ const FolderContainer = ({ parentDir }: FolderContainerProps) => {
   }, []);
   return (
     <>
-      {loading && <p>loading...</p>}
-      {!loading && folders.length === 0 && <p>{"-- "}No folders.</p>}
+      {loading && <p className="folder">loading...</p>}
+      {!loading && folders.length === 0 && (
+        <p className="folder">{"-- "}No folders.</p>
+      )}
       {!loading &&
         folders.length > 0 &&
         folders.map((folder, ind) => {
