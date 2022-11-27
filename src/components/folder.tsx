@@ -43,14 +43,20 @@ function Folder({ parentDir, type, folderName, id }: FolderProps) {
           {">"}
         </button>
         <p style={{ height: 44, padding: "13px 25px" }}> {folderName} </p>
-        {type !== "root" && (
-          <button className="button" onClick={() => handleDelete(id)}>
-            D
+        <div style={{ marginLeft: "auto" }}>
+          {type !== "root" && (
+            <button className="button" onClick={() => handleDelete(id)}>
+              D
+            </button>
+          )}
+          <button
+            className="button"
+            style={{ marginLeft: 5 }}
+            onClick={(e) => handleCreate(e, true)}
+          >
+            new +
           </button>
-        )}
-        <button className="button" onClick={(e) => handleCreate(e, true)}>
-          new +
-        </button>
+        </div>
         {showMsg && (
           <p
             style={{
@@ -70,7 +76,10 @@ function Folder({ parentDir, type, folderName, id }: FolderProps) {
               : "The folder couldnot be deleted."}
           </p>
         )}
-        {showForm && (
+        {type === "root" && showForm && (
+          <CreateForm cancel={handleCreate} parentDir="root" />
+        )}
+        {type !== "root" && showForm && (
           <CreateForm
             cancel={handleCreate}
             parentDir={`${parentDir}/${folderName}`}

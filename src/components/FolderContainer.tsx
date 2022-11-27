@@ -5,7 +5,6 @@ import { serverUrl } from "..";
 
 type FolderContainerProps = { parentDir: string };
 const FolderContainer = ({ parentDir }: FolderContainerProps) => {
-  console.log(parentDir);
   const [folders, setFolders] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchFolders = () => {
