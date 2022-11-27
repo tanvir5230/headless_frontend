@@ -16,7 +16,8 @@ export const DeleteButton = (props: { id: string; name: string }) => {
       }
       setTimeout(() => {
         setShowMsg(false);
-      }, 2000);
+        setOpen(false);
+      }, 1000);
     });
   };
   return (

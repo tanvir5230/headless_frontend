@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { serverUrl } from "..";
 import { CreateForm } from "./createButton";
 import { DeleteButton } from "./deleteButton";
 import { FolderContainer } from "./FolderContainer";
@@ -10,8 +8,9 @@ type FolderProps = {
   type: string;
   folderName: string;
   id: string;
+  setRefresh?: Function;
 };
-function Folder({ parentDir, type, folderName, id }: FolderProps) {
+function Folder({ parentDir, type, folderName, id, setRefresh }: FolderProps) {
   const [rotation, setRotation] = useState(0);
   const [renderContainer, setRenderContainer] = useState(false);
   const [showForm, setShowForm] = useState(false);

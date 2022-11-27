@@ -5,11 +5,11 @@ import React, { useState } from "react";
 const CreateForm = (props: { cancel: Function; parentDir: string }) => {
   const [created, setCreated] = useState(false);
   const [showMessage, setShowMessage] = useState("");
-  const [inputFolderNmae, setInputFolderName] = useState("");
+  const [inputFolderName, setInputFolderName] = useState("");
   const handleSubmit = (event: React.MouseEvent) => {
     event.preventDefault();
     axios
-      .post(`${serverUrl}/${props.parentDir}/${inputFolderNmae}`)
+      .post(`${serverUrl}/${props.parentDir}/${inputFolderName}`)
       .then((response) => {
         if (response.data.status) {
           setCreated(true);
@@ -29,7 +29,7 @@ const CreateForm = (props: { cancel: Function; parentDir: string }) => {
           style={{ width: "100%", height: 40, padding: 5, borderRadius: 10 }}
           type="text"
           name="inputName"
-          value={inputFolderNmae}
+          value={inputFolderName}
           placeholder="Enter your folder name...."
           onChange={(e) => setInputFolderName(e.target.value)}
           required
@@ -38,7 +38,11 @@ const CreateForm = (props: { cancel: Function; parentDir: string }) => {
           <button className="button" onClick={(e) => props.cancel(e, false)}>
             Cancel
           </button>
-          <button className="button" onClick={(e) => handleSubmit(e)}>
+          <button
+            className="button"
+            disabled={inputFolderName.length > 0 ? false : true}
+            onClick={(e) => handleSubmit(e)}
+          >
             Submit
           </button>
         </div>

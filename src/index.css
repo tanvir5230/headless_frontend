@@ -12,7 +12,10 @@
 }
 .folder-container {
   height: 90vh;
+  padding: 0px 10px 10px 10px;
   border-top: 2px solid white;
+  scroll-behavior: smooth;
+  overflow-y: auto;
 }
 .folder {
   display: flex;
@@ -25,6 +28,20 @@
   border-style: solid;
   border-radius: 10px;
   height: 50px;
+}
+.folder > p {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.folder > p::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.folder p {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .form-container {
   display: flex;
@@ -87,6 +104,8 @@
 }
 
 .button:disabled {
+  background-color: white;
+  color: #020725;
   cursor: default;
 }
 

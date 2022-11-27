@@ -5,6 +5,7 @@ import { serverUrl } from "..";
 
 type FolderContainerProps = { parentDir: string };
 const FolderContainer = ({ parentDir }: FolderContainerProps) => {
+  const [refresh, setRefresh] = useState(false);
   const [folders, setFolders] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchFolders = () => {
@@ -15,7 +16,7 @@ const FolderContainer = ({ parentDir }: FolderContainerProps) => {
   };
   useEffect(() => {
     fetchFolders();
-  }, []);
+  }, [refresh]);
   return (
     <>
       {loading && <p className="folder">loading...</p>}
